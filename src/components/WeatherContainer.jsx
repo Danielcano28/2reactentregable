@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import WeatherStat from "./WeatherStat";
 
 export const WeatherContainer = ({ weather, language, setLanguage }) => {
@@ -24,27 +24,14 @@ export const WeatherContainer = ({ weather, language, setLanguage }) => {
   };
 
   console.log(weather);
-  const [them, setThem] = useState("light");
-
-  useEffect(() => {
-    if (them === "dark") {
-      document.querySelector("html").classList.add("dark");
-    } else {
-      document.querySelector("html").classList.remove("dark");
-    }
-  }, [them]);
-
-  const handleTheme = () => {
-    setThem((prethem) => (prethem === "light" ? "dark" : "light"));
-  };
 
   return (
-    <section className="   text-center gap-5 grid place-items-center text-xl ">
-      <h3 className=" text-[2rem] font-semibold dark:text-yellow-700 duration-500   ">
+    <section className="   text-center gap-5 grid place-items-center text-xl dark:bg-black">
+      <h3 className=" text-[2rem] font-semibold  duration-500  dark:text-white ">
         {weather.name}, {weather.sys.country}
       </h3>
 
-      <div className="grid gap-5 sm:grid-cols-[1fr_auto] ">
+      <div className="grid gap-5 sm:grid-cols-[1fr_auto] dark:bg-black">
         <article className="bg-slate-500/40 rounded-2xl grid grid-cols-2 items-center p  :dark:text-black-700 ">
           <h4 className=" text-black-700 duration-500 text-[1.5rem] col-span-2 text-lg capitalize fon    ">
             {weather.weather[0].description}
@@ -89,13 +76,6 @@ export const WeatherContainer = ({ weather, language, setLanguage }) => {
         onClick={handleLanguage}
       >
         EN / ES
-      </button>
-
-      <button
-        className="w-36 py-2 bg-slate-500/40 rounded-2xl"
-        onClick={handleTheme}
-      >
-        dark / light
       </button>
     </section>
   );
